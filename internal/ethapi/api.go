@@ -2248,7 +2248,7 @@ func (s *BundleAPI) CallBundle(ctx context.Context, args CallBundleArgs) (map[st
 			jsonResult["error"] = result.Err.Error()
 			revert := result.Revert()
 			if len(revert) > 0 {
-				jsonResult["revert"] = string(revert)
+				jsonResult["revert"] = hexutil.Encode(revert)
 			}
 		} else {
 			dst := make([]byte, hex.EncodedLen(len(result.Return())))
