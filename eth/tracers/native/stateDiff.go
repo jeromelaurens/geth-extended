@@ -154,7 +154,7 @@ func (t *stateDiff) CaptureTxEnd(restGas uint64) {
 	// the new created contracts' prestate were empty, so delete them
 	for a := range t.created {
 		// the created contract maybe exists in statedb before the creating tx
-		if s := t.pre[a]; s != nil && !s.exists() {
+		if s := t.pre[a]; s != nil && len(s.Storage) == 0 {
 			delete(t.pre, a)
 		}
 	}
